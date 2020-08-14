@@ -15,10 +15,10 @@ export default class Form extends React.Component {
         });
     };
 
-    validate = () => {
+    validate() {
         let answerError = "";
     
-        if (!this.state.answer.includes("360329")) {
+        if (this.state.answer !== "360329") {
             answerError = "Your answer is wrong! Please refer to the hint and try again! 🥺🥺\nYour answer: " + this.state.answer;
         } else {
             answerError = "Congratulations! Here is your reward!\nhttps://www.youtube.com/watch?v=5tiLf_bCClU";
@@ -32,7 +32,7 @@ export default class Form extends React.Component {
         return true;
     };
 
-    onSubmit = e => {
+    onSubmit(e) {
         e.preventDefault();
         const isValid = this.validate();
         if (isValid) {
@@ -52,16 +52,17 @@ export default class Form extends React.Component {
             <form>
                 <div>
                     <input
-                    name="answer"
-                    placeholder="Input your answer here:"
-                    value={this.state.answer}
-                    onChange={e => this.change(e)}
+                        name="answer"
+                        placeholder="Input your answer here:"
+                        value={this.state.answer}
+                        onChange={e => this.change(e)}
                     />
 
                     <div style={{fontSize: 12, color: "red"}} >
                         {this.state.answerError}
                     </div>
                 </div>
+                
                 <button style={{marginTop: "5px"}} onClick={e => this.onSubmit(e)}>Submit</button>
             </form>
         )
